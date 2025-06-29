@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verification Result</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; }
+        .result { margin-top: 20px; padding: 20px; background: #f8f9fa; border-radius: 5px; }
+        .verdict { font-weight: bold; margin: 10px 0; }
+        .confidence { margin: 10px 0; }
+        .article { margin: 20px 0; padding: 15px; background: white; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .article h3 { margin-top: 0; }
+        .timestamp { color: #666; font-size: 0.9em; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .back-link { display: inline-block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Verification Result</h1>
+    
+    <div class="result">
+        <h2>Claim: {{ result.claim }}</h2>
+        <div class="verdict">Verdict: {{ result.verdict }}</div>
+        {% if result.confidence > 0 %}
+        <div class="confidence">Confidence: {{ result.confidence }}%</div>
+        {% endif %}
+        
+        {% if result.error %}
+        <div class="error">{{ result.error }}</div>
+        {% elif result.articles %}
+        <h3>Top Match:</h3>
+        <div class="article">
+            <h3>{{ result.articles[0].title }}</h3>
+            <p>Source: {{ result.articles[0].source.name }}</p>
+            <p><a href="{{ result.articles[0].url }}" target="_blank">Read full article</a></p>
+        </div>
+        
+        <h3>All Sources:</h3>
+        {% for article in result.articles %}
+        <div class="article">
+            <h3>{{ article.title }}</h3>
+            <p>Source: {{ article.source.name }}</p>
+            <p><a href="{{ article.url }}" target="_blank">Read full article</a></p>
+        </div>
+        {% endfor %}
+        {% endif %}
+        
+        <div class="timestamp">Checked at: {{ result.timestamp }}</div>
+    </div>
+    
+    <a href="/" class="back-link">← Check another claim</a>
+</body>
+</html>

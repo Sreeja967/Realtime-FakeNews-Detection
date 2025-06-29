@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fake News Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        h1 { color: #333; }
+        form { margin-top: 30px; }
+        input[type="text"] { width: 100%; padding: 10px; font-size: 16px; }
+        input[type="submit"] { margin-top: 10px; padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        input[type="submit"]:hover { background: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Fake News Detector</h1>
+    <p>Enter a news claim to check its veracity against recent news sources.</p>
+    
+    <form method="POST" action="/">
+        <input type="text" name="claim" placeholder="Enter news claim..." required>
+        <input type="submit" value="Verify Claim">
+    </form>
+</body>
+</html>
